@@ -9,6 +9,9 @@ import { useNear } from "../context/NearProvider";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import {LensLogin} from "../components/LensLogin";
+import {
+  SignInWithLens
+} from '../node_modules/@lens-protocol/widgets-react/dist/SignInWithLens'
 
 export default function Home() {
 
@@ -27,7 +30,16 @@ export default function Home() {
       })
       
 
-  
+    
+      async function onSignIn(tokens, profile) {
+        console.log('tokens: ', tokens)
+        console.log('profile: ', profile)
+        
+        setRedirect(false);
+        router.push("/");
+      }
+      
+      
     useEffect(() => {
       setLoading(true)
       uauth
@@ -143,17 +155,11 @@ export default function Home() {
         <h3 className="font-extralight text-lg sm:text-xl lg:text-2xl">
           Decentralized High Definition Music
         </h3>
-        <button className="login-btn positioned"
-          onClick={     () =>    {LensLogin}
-              
-          }
-        ><a>  
-        <img
-        src="/default-button.png"
-        />
-        </a>
+        <SignInWithLens
+  onSignIn={onSignIn}
+>
           {/* <NearLogo /> <code>/explore</code> */}
-        </button>
+       </SignInWithLens>
       </div>
     </motion.main>
   );

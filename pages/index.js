@@ -41,7 +41,7 @@ export default function App({ data }) {
 
   useEffect(() => {
     if (wallet === undefined || wallet === null) return;
-    if (redirect && !wallet.isSignedIn()) router.replace("/home");
+    if (redirect && !wallet.isSignedIn()) router.push("/home");
     else showPage(true);
   }, [wallet]);
 

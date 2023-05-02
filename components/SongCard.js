@@ -9,6 +9,11 @@ import { Snackbar, Alert } from "@mui/material";
 
 import { useEffect, useState } from "react";
 import { Song, useSound } from "../context/SoundProvider";
+import {
+  ShareToLens
+} from '../node_modules/@lens-protocol/widgets-react/dist/ShareToLens'
+
+
 
 export default function SongCard({ song }) {
   const { setSong, addToQueue, stopAll, play, build_features } = useSound();
@@ -40,6 +45,16 @@ export default function SongCard({ song }) {
                 size="small"
                 aria-label="queue"
               >
+
+                  <ShareToLens
+                  content="Hello World!"
+                  size="small"
+                  url = "https://your-awesome-app.com"
+                  hashtags= "web3,social,blockchain"
+                  via=  "YourAwesomeApp"
+                  title= ""
+                  />
+
                 <QueueMusicIcon />
               </IconButton>
               <IconButton
